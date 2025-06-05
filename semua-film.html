@@ -95,6 +95,19 @@
       color: #a0c1ff;
     }
 
+    /* Navigation styles */
+    #nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    #nav a {
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     /* Responsive tweaks */
     @media (max-width: 768px) {
       h2 {
@@ -132,7 +145,11 @@
   <div id="header-placeholder"></div>
 
   <main>
-    <h2>Semua Film</h2>
+    <div id="nav">
+      <a id="all-movies" onclick="showAllMovies()">Semua Film</a>
+      <a id="coming-soon" onclick="showComingSoon()">Coming Soon</a>
+    </div>
+    <h2 id="main-title">Semua Film</h2>
     <div id="movie-container">
       <!-- Film akan dimunculkan di sini -->
     </div>
@@ -151,9 +168,19 @@
         });
     }
     loadHeader();
+
+    function showAllMovies() {
+      document.getElementById('main-title').innerText = "Semua Film";
+      displayMovies("all");
+    }
+
+    function showComingSoon() {
+      document.getElementById('main-title').innerText = "Coming Soon";
+      displayMovies("all", true);
+    }
   </script>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
 </body>
 </html>

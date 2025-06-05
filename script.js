@@ -201,12 +201,64 @@ const movies = [
   }
 ];
 
+const comingSoonMovies = [
+  {
+    title: "Sebelum 7 Hari",
+    genre: "horor",
+    rating: null, // Rating belum tersedia
+    poster: "images/sebelum_7_hari.jpg",
+    synopsis: "Kisah misteri yang menunggu untuk terungkap.",
+    platform: "Bioskop"
+  },
+  {
+    title: "Pengantin Iblis",
+    genre: "horor",
+    rating: null, // Rating belum tersedia
+    poster: "images/pengantin_iblis.jpg",
+    synopsis: "Cerita tentang pengantin yang terjebak dalam kutukan.",
+    platform: "Bioskop"
+  },
+  {
+    title: "Tak Ingin Usai di Sini",
+    genre: "romantis",
+    rating: null, // Rating belum tersedia
+    poster: "images/tak_ingin_usai_di_sini.jpg",
+    synopsis: "Cinta yang terhalang oleh waktu dan keadaan.",
+    platform: "Bioskop"
+  },
+  {
+    title: "Pulung Gantung: Pati Ngendat",
+    genre: "horor",
+    rating: null, // Rating belum tersedia
+    poster: "images/pulung_gantung.jpg",
+    synopsis: "Kisah horor yang mengerikan tentang pulung gantung.",
+    platform: "Bioskop"
+  },
+  {
+    title: "Petaka Gunung Gede",
+    genre: "horor",
+    rating: null, // Rating belum tersedia
+    poster: "images/petaka_gunung_gede.jpg",
+    synopsis: "Misteri yang terjadi di Gunung Gede.",
+    platform: "Bioskop"
+  },
+  {
+    title: "Mungkin Kita Perlu Waktu",
+    genre: "romantis",
+    rating: null, // Rating belum tersedia
+    poster: "images/mungkin_kita_perlu_waktu.jpg",
+    synopsis: "Perjalanan cinta yang penuh harapan.",
+    platform: "Bioskop"
+  }
+];
 
-function displayMovies(filterGenre = "all") {
+function displayMovies(filterGenre = "all", comingSoon = false) {
   const container = document.getElementById("movie-container");
   container.innerHTML = "";
 
-  const filtered = filterGenre === "all" ? movies : movies.filter(m => m.genre === filterGenre);
+  const filtered = comingSoon 
+    ? comingSoonMovies 
+    : (filterGenre === "all" ? movies : movies.filter(m => m.genre === filterGenre));
 
   filtered.forEach(movie => {
     const card = document.createElement("div");
@@ -214,7 +266,7 @@ function displayMovies(filterGenre = "all") {
     card.innerHTML = `
       <img src="${movie.poster}" alt="${movie.title}">
       <h4>${movie.title}</h4>
-      <p><strong>Rating:</strong> ⭐ ${movie.rating}</p>
+      <p><strong>Rating:</strong> ⭐ ${movie.rating !== null ? movie.rating : "N/A"}</p>
       <p><strong>Sinopsis:</strong> ${movie.synopsis}</p>
       <p><strong>Tayang di:</strong> ${movie.platform}</p>
     `;
